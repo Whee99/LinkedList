@@ -58,5 +58,8 @@ public class Program
         {
             Console.Write($"{i} ");
         }
+        Console.WriteLine("");
+
+        Console.WriteLine($"List's length: {list.Count}");
     }
 }
