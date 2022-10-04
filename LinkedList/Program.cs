@@ -8,8 +8,9 @@ public class Program
         int[] num = { 1, 2, 3, 4, 5 };
         LinkedList<int> list = new LinkedList<int>(num);
 
-        LinkedListNode<int> currentNode = list.First;
+        LinkedListNode<int> currentNode;
 
+        // prints out a linked list
         void print_list(LinkedList<int> list)
         {
             foreach (int i in list)
@@ -19,6 +20,7 @@ public class Program
             Console.WriteLine("");
         }
 
+        // shows the current, previous, and next node
         void current_node_traits()
         { // start of current_node_traits
             if (currentNode == null)
@@ -45,15 +47,68 @@ public class Program
             }
         } // end of current_node_traits
 
-        print_list(list);
+        // prints a linked list in reverse
+        void print_reverse(LinkedList<int> list)
+        { // start of print_reverse
+            currentNode = list.Last;
+            
+            Console.Write("Original List: ");
+            foreach(int i in list)
+            {
+                Console.Write($"{i} ");
+                //Console.WriteLine("");
+            }
 
-        list.AddFirst(0);
-        list.AddLast(6);
+            Console.Write("\nReversed list: ");
+            while(currentNode != null)
+            {
+                Console.Write($"{currentNode.Value} ");
+                currentNode = currentNode.Previous;
+            }
+            Console.WriteLine("");
+        } // end of print_reverse
 
-        print_list(list);
+        /*
+        // find the middle node via the list's length
+        void mid_point(LinkedList<int> list)
+        { // start of mid_point
+            currentNode = list.First;
+            int tracker = 1;
+            double length = list.Count;
+            double mid = Math.Ceiling(length / 2);
+            
+            while(tracker != mid)
+            {
+                currentNode = currentNode.Next;
+                tracker++;
+            }
 
-        current_node_traits();
+            Console.WriteLine($"The middle node is: {currentNode.Value}");
+        } // end of mid-point
+        */
 
+        // Finds the middle node via two pointers whereas one travels twice as fast
+        // as the other. Once the faster one reaches the end of the list, the other
+        // will be at the middle point.
+        void mid_point(LinkedList<int> list)
+        {
+            currentNode = list.First;
+            LinkedListNode<int> flash = list.First;
+
+            while(flash != list.Last && flash != null)
+            {
+                currentNode = currentNode.Next;
+                flash = flash.Next.Next;
+            }
+
+            Console.WriteLine($"The middle node is: {currentNode.Value}");
+        }
+
+        print_reverse(list);
+
+        mid_point(list);
+
+        /*
         while (currentNode != null)
         {
             if(currentNode.Value == 4) { 
@@ -63,9 +118,6 @@ public class Program
             currentNode = currentNode.Next;
         }
 
-        print_list(list);
-        Console.WriteLine($"Current Node: {currentNode.Value}");
-
         while (currentNode != null)
         {
             if(currentNode.Value == 5)
@@ -73,17 +125,14 @@ public class Program
                 LinkedListNode<int> temp = currentNode;
                 currentNode = currentNode.Next;
                 list.Remove(temp);
+                break;
             }
             else
             {
                 currentNode = currentNode.Next;
             }
         }
+        */
 
-        print_list(list);
-
-        current_node_traits();
-
-        Console.WriteLine($"List's length: {list.Count}");
     } // end of Main
 } // end of class Program
