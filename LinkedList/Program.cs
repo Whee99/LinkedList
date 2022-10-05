@@ -104,21 +104,57 @@ public class Program
             Console.WriteLine($"The middle node is: {currentNode.Value}");
         }
 
-        // reverses a linked list
-        void reverse(LinkedList<int> list)
+        void push(LinkedList<int> list, int num)
         {
-            currentNode = list.First;
-            LinkedListNode<int> next;
+            currentNode = list.AddLast(num);
+        }
 
-            while(currentNode != null)
-            {
-                next = currentNode.Previous;
+        void pop(LinkedList<int> list)
+        {
+            if(list.Count == 0) {
+                Console.WriteLine("The list is empty");
+            }
+            else {
+                currentNode = list.Last.Previous;
+                list.RemoveLast();
             }
         }
 
-        print_reverse(list);
+        void enQ(LinkedList<int> list, int num)
+        {
+            currentNode = list.AddFirst(num);
+        }
 
-        mid_point(list);
+        void deQ(LinkedList<int> list)
+        {
+            if (list.Count == 0) {
+                Console.WriteLine("The list is empty");
+            }
+            else {
+                currentNode = list.Last.Previous;
+                list.RemoveLast();
+            }
+        }
+
+        pop(list);
+        push(list, 9);
+        print_list(list);
+        current_node_traits();
+        // reverses a linked list
+        //void reverse(LinkedList<int> list)
+        //{
+        //    currentNode = list.First;
+        //    LinkedListNode<int> next;
+
+        //    while(currentNode != null)
+        //    {
+        //        next = currentNode.Previous;
+        //    }
+        //}
+
+        //print_reverse(list);
+
+        //mid_point(list);
 
         /*
         while (currentNode != null)
