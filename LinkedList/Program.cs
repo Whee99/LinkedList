@@ -104,6 +104,18 @@ public class Program
             Console.WriteLine($"The middle node is: {currentNode.Value}");
         }
 
+        // reverses a linked list
+        void reverse(LinkedList<int> list)
+        {
+            currentNode = list.First;
+            LinkedListNode<int> next;
+
+            while(currentNode != null)
+            {
+                next = currentNode.Previous;
+            }
+        }
+
         print_reverse(list);
 
         mid_point(list);
