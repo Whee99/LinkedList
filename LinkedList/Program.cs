@@ -1,186 +1,123 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Program
-{ // start of class Program
-    public static void Main(string[] args)
-    { // start of Main
-        int[] num = { 1, 2, 3, 4, 5 };
-        LinkedList<int> list = new LinkedList<int>(num);
-
-        LinkedListNode<int> currentNode;
-
-        // prints out a linked list
-        void print_list(LinkedList<int> list)
-        {
-            foreach (int i in list)
-            {
-                Console.Write($"{i} ");
-            }
-            Console.WriteLine("");
-        }
-
-        // shows the current, previous, and next node
-        void current_node_traits()
-        { // start of current_node_traits
-            if (currentNode == null)
-            {
-                Console.WriteLine("Node is null");
-            }
-            else
-            {
-                Console.WriteLine($"Current Node: {currentNode.Value}");
-
-                if (currentNode.Previous == null) {
-                    Console.WriteLine("This node is the head");
-                }
-                else {
-                    Console.WriteLine($"Previous Node: {currentNode.Previous.Value}");
-                }
-
-                if(currentNode.Next == null) {
-                    Console.WriteLine("This node is the tail");
-                }
-                else {
-                    Console.WriteLine($"Next Node: {currentNode.Next.Value}");
-                }
-            }
-        } // end of current_node_traits
-
-        // prints a linked list in reverse
-        void print_reverse(LinkedList<int> list)
-        { // start of print_reverse
-            currentNode = list.Last;
+namespace LinkedList
+{
+    public class Program
+    { // start of class Program
+        public static void Main(string[] args)
+        { // start of Main
             
-            Console.Write("Original List: ");
-            foreach(int i in list)
+            // Prints a linked list
+            void PrintList(LinkedList list)
             {
-                Console.Write($"{i} ");
-                //Console.WriteLine("");
+                Node temp = list.head;
+                while(temp.next != null)
+                {
+                    Console.Write($"{temp.data} ");
+                    temp = temp.next;
+                }
             }
-
-            Console.Write("\nReversed list: ");
-            while(currentNode != null)
-            {
-                Console.Write($"{currentNode.Value} ");
-                currentNode = currentNode.Previous;
-            }
-            Console.WriteLine("");
-        } // end of print_reverse
-
-        /*
-        // find the middle node via the list's length
-        void mid_point(LinkedList<int> list)
-        { // start of mid_point
-            currentNode = list.First;
-            int tracker = 1;
-            double length = list.Count;
-            double mid = Math.Ceiling(length / 2);
             
-            while(tracker != mid)
+            // Get the last node of a linked list
+            Node GetLastNode(LinkedList list)
+            { // start of LastNode
+                Node temp = list.head;                
+                while(temp.next != null) { 
+                    temp = temp.next;
+                }
+                return temp;
+            } // end of LastNode
+
+            // Finds a node in a linked list
+            Node FindNode(LinkedList list, int i)
             {
-                currentNode = currentNode.Next;
-                tracker++;
+                Node temp = list.head;
+                while(temp.next != null) { 
+                    if(temp.data == i) { 
+                        return temp;
+                    }
+                    else {
+                        temp = temp.next;
+                    }
+                }
+                return temp;
+            }
+            
+            // Inserts a node in front of a linked list
+            void InsertFront(LinkedList list, int data)
+            { // start of InsertFront
+                Node newNode = new Node(data);
+                newNode.next = list.head;
+                newNode.prev = null;
+
+                if(list.head != null) {
+                    list.head.prev = newNode;
+                }
+                list.head = newNode;
+            } // end of InsertFront
+
+            // Inserts a node at the end of a linked list
+            void InsertLast(LinkedList list, int data)
+            { // start of InsertLast
+                Node newNode = new Node(data);                
+                if(list.head == null) {
+                    newNode.prev = null;
+                    list.head = newNode;
+                    return;
+                }
+                Node lastNode = GetLastNode(list);
+                lastNode.next = newNode;
+                newNode.prev = lastNode;
+            } // end of InsertLast
+
+            // Creates a cycle within a linked list
+            void Cycle(LinkedList list, int data)
+            { // start of Cycle
+                Node lastNode = GetLastNode(list);
+                Node target = FindNode(list, data);
+
+                if(target.data == data)
+                {
+                    lastNode.next = target;
+                }
+            } // end of Cycle
+
+            // Detect if there is a cycle within the linked list
+            bool TortoiseAndHare(LinkedList list)
+            { // start of TortoiseAndHare
+                if (list.head == null || list.head.next == null) { 
+                    return false;
+                }
+                
+                Node tortoise = list.head;
+                Node hare = list.head.next;
+
+                while(hare != null && hare.next != null)
+                {
+                    if(tortoise == hare) {
+                        return true;
+                    }
+                    else { 
+                        tortoise = tortoise.next;
+                        hare = hare.next.next;
+                    }
+                }
+                return false;
+            } // end of TortoiseAndHare
+
+            LinkedList list = new LinkedList();
+            for(int i = 1; i <= 6; i++) {
+                InsertLast(list, i);
             }
 
-            Console.WriteLine($"The middle node is: {currentNode.Value}");
-        } // end of mid-point
-        */
+            PrintList(list);
 
-        // Finds the middle node via two pointers whereas one travels twice as fast
-        // as the other. Once the faster one reaches the end of the list, the other
-        // will be at the middle point.
-        void mid_point(LinkedList<int> list)
-        {
-            currentNode = list.First;
-            LinkedListNode<int> flash = list.First;
+            Cycle(list, 2);
+            Console.WriteLine(FindNode(list, 5).next.data);
+            
+            
 
-            while(flash != list.Last && flash != null)
-            {
-                currentNode = currentNode.Next;
-                flash = flash.Next.Next;
-            }
-
-            Console.WriteLine($"The middle node is: {currentNode.Value}");
-        }
-
-        void push(LinkedList<int> list, int num)
-        {
-            currentNode = list.AddLast(num);
-        }
-
-        void pop(LinkedList<int> list)
-        {
-            if(list.Count == 0) {
-                Console.WriteLine("The list is empty");
-            }
-            else {
-                currentNode = list.Last.Previous;
-                list.RemoveLast();
-            }
-        }
-
-        void enQ(LinkedList<int> list, int num)
-        {
-            currentNode = list.AddFirst(num);
-        }
-
-        void deQ(LinkedList<int> list)
-        {
-            if (list.Count == 0) {
-                Console.WriteLine("The list is empty");
-            }
-            else {
-                currentNode = list.Last.Previous;
-                list.RemoveLast();
-            }
-        }
-
-        pop(list);
-        push(list, 9);
-        print_list(list);
-        current_node_traits();
-        // reverses a linked list
-        //void reverse(LinkedList<int> list)
-        //{
-        //    currentNode = list.First;
-        //    LinkedListNode<int> next;
-
-        //    while(currentNode != null)
-        //    {
-        //        next = currentNode.Previous;
-        //    }
-        //}
-
-        //print_reverse(list);
-
-        //mid_point(list);
-
-        /*
-        while (currentNode != null)
-        {
-            if(currentNode.Value == 4) { 
-                list.AddAfter(currentNode, 9);
-                break;
-            }
-            currentNode = currentNode.Next;
-        }
-
-        while (currentNode != null)
-        {
-            if(currentNode.Value == 5)
-            {
-                LinkedListNode<int> temp = currentNode;
-                currentNode = currentNode.Next;
-                list.Remove(temp);
-                break;
-            }
-            else
-            {
-                currentNode = currentNode.Next;
-            }
-        }
-        */
-
-    } // end of Main
-} // end of class Program
+        } // end of Main
+    } // end of class Program
+}
