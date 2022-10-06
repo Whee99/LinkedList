@@ -12,11 +12,12 @@ namespace LinkedList
             void PrintList(LinkedList list)
             {
                 Node temp = list.head;
-                while(temp.next != null)
+                while(temp != null)
                 {
                     Console.Write($"{temp.data} ");
                     temp = temp.next;
                 }
+                Console.WriteLine("");
             }
             
             // Get the last node of a linked list
@@ -72,15 +73,16 @@ namespace LinkedList
             } // end of InsertLast
 
             // Creates a cycle within a linked list
-            void Cycle(LinkedList list, int data)
+            void Cycle(LinkedList list, int data1, int data2)
             { // start of Cycle
-                Node lastNode = GetLastNode(list);
-                Node target = FindNode(list, data);
+                Node start = FindNode(list, data1);
+                Node end = FindNode(list, data2);
+                start.next = end;
 
-                if(target.data == data)
-                {
-                    lastNode.next = target;
-                }
+                //if(target.data == i)
+                //{
+                //    lastNode.next = target;
+                //}
             } // end of Cycle
 
             // Detect if there is a cycle within the linked list
@@ -107,16 +109,17 @@ namespace LinkedList
             } // end of TortoiseAndHare
 
             LinkedList list = new LinkedList();
-            for(int i = 1; i <= 6; i++) {
+            for(int i = 1; i <= 10; i++) {
                 InsertLast(list, i);
             }
 
             PrintList(list);
 
-            Cycle(list, 2);
-            Console.WriteLine(FindNode(list, 5).next.data);
-            
-            
+            Cycle(list, 8, 2);
+            Console.WriteLine(FindNode(list, 8).next.data);
+
+            Console.WriteLine(TortoiseAndHare(list));
+
 
         } // end of Main
     } // end of class Program
