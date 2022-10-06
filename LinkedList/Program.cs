@@ -42,7 +42,7 @@ namespace LinkedList
                         temp = temp.next;
                     }
                 }
-                return temp;
+                return null;
             }
             
             // Inserts a node in front of a linked list
@@ -76,19 +76,21 @@ namespace LinkedList
             void Cycle(LinkedList list, int data1, int data2)
             { // start of Cycle
                 Node start = FindNode(list, data1);
-                Node end = FindNode(list, data2);
-                start.next = end;
+                Node end = FindNode(list, data2);              
 
-                //if(target.data == i)
-                //{
-                //    lastNode.next = target;
-                //}
+                if (start != null && end != null) {
+                    start.next = end;
+                }
+                else {
+                    Console.WriteLine("The node(s) is null");
+                }
             } // end of Cycle
 
-            // Detect if there is a cycle within the linked list
+            // Cycle detection algorithm
             bool TortoiseAndHare(LinkedList list)
             { // start of TortoiseAndHare
-                if (list.head == null || list.head.next == null) { 
+                if (list.head == null || list.head.next == null) {
+                    Console.WriteLine("List is empty");
                     return false;
                 }
                 
@@ -98,6 +100,7 @@ namespace LinkedList
                 while(hare != null && hare.next != null)
                 {
                     if(tortoise == hare) {
+                        Console.WriteLine("Cycle found!");
                         return true;
                     }
                     else { 
@@ -105,6 +108,7 @@ namespace LinkedList
                         hare = hare.next.next;
                     }
                 }
+                Console.WriteLine("Cycle not found");
                 return false;
             } // end of TortoiseAndHare
 
@@ -118,8 +122,7 @@ namespace LinkedList
             Cycle(list, 8, 2);
             Console.WriteLine(FindNode(list, 8).next.data);
 
-            Console.WriteLine(TortoiseAndHare(list));
-
+            TortoiseAndHare(list);
 
         } // end of Main
     } // end of class Program
