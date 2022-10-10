@@ -31,6 +31,7 @@ namespace LinkedList
             } // end of LastNode
 
             // Finds a node in a linked list
+            // Start of FindNode
             Node FindNode(LinkedList list, int i)
             {
                 Node temp = list.head;
@@ -44,6 +45,37 @@ namespace LinkedList
                 }
                 return null;
             }
+            // End of FindNode
+
+            // Removes a node from a Linked List
+            // Start of RemoveNode
+            void RemoveNode(LinkedList list, int data)
+            {
+                Node temp = FindNode(list, data);
+                if(temp == null) {
+                    Console.WriteLine("Node does not exist");
+                }
+                else {
+                    if(temp == list.head) {
+                        Node next = temp.next;
+                        next.prev = null;
+                        temp = null;
+                    }
+                    else if(temp == GetLastNode(list)) {
+                        Node previous = temp.prev;
+                        previous.next = null;
+                        temp = null;
+                    }
+                    else {
+                        Node previous = temp.prev;
+                        Node next = temp.next;
+                        previous.next = next;
+                        next.prev = previous;
+                        temp = null;
+                    }
+                }
+            }
+            // End of RemoveNode
             
             // Inserts a node in front of a linked list
             void InsertFront(LinkedList list, int data)
@@ -71,6 +103,22 @@ namespace LinkedList
                 lastNode.next = newNode;
                 newNode.prev = lastNode;
             } // end of InsertLast
+
+            // Adds an item to the front of a list
+            // Start of enQueue
+            void enQueue(LinkedList queue, int data)
+            {
+                InsertFront(queue, data);
+            }
+            // End of enQueue
+
+            // Remove an item from the end of the list
+            // start of deQueue
+            void deQueue(LinkedList queue)
+            {
+                RemoveNode(queue, GetLastNode(queue).data);
+            }
+            // end of deQueue
 
             // Creates a cycle within a linked list
             void Cycle(LinkedList list, int data1, int data2)
@@ -123,7 +171,7 @@ namespace LinkedList
             Console.WriteLine(FindNode(list, 8).next.data);
 
             TortoiseAndHare(list);
-
+            Console.WriteLine(TortoiseAndHare(list));
         } // end of Main
     } // end of class Program
 }
