@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Duong Duc Huy\\LinkedList\\LinkedList\\LinkedList\\LinkedList.csproj": {}
+    "/Users/huyduong/Desktop/Coding Projects/LinkedList/LinkedList/LinkedList.csproj": {}
   },
   "projects": {
-    "D:\\Duong Duc Huy\\LinkedList\\LinkedList\\LinkedList\\LinkedList.csproj": {
+    "/Users/huyduong/Desktop/Coding Projects/LinkedList/LinkedList/LinkedList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Duong Duc Huy\\LinkedList\\LinkedList\\LinkedList\\LinkedList.csproj",
+        "projectUniqueName": "/Users/huyduong/Desktop/Coding Projects/LinkedList/LinkedList/LinkedList.csproj",
         "projectName": "LinkedList",
-        "projectPath": "D:\\Duong Duc Huy\\LinkedList\\LinkedList\\LinkedList\\LinkedList.csproj",
-        "packagesPath": "C:\\Users\\duong\\.nuget\\packages\\",
-        "outputPath": "D:\\Duong Duc Huy\\LinkedList\\LinkedList\\LinkedList\\obj\\",
+        "projectPath": "/Users/huyduong/Desktop/Coding Projects/LinkedList/LinkedList/LinkedList.csproj",
+        "packagesPath": "/Users/huyduong/.nuget/packages/",
+        "outputPath": "/Users/huyduong/Desktop/Coding Projects/LinkedList/LinkedList/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\duong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/huyduong/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
         }
       }
     }

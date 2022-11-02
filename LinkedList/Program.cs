@@ -167,11 +167,12 @@ namespace LinkedList
 
             PrintList(list);
 
+            TortoiseAndHare(list);
+
             Cycle(list, 8, 2);
             Console.WriteLine(FindNode(list, 8).next.data);
 
             TortoiseAndHare(list);
-            Console.WriteLine(TortoiseAndHare(list));
         } // end of Main
     } // end of class Program
 }
