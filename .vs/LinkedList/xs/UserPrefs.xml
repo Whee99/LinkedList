@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{B1FCBD73-4AC2-44EC-9003-9E8115209845}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LinkedList/Node.cs">
+  <MonoDevelop.Ide.ItemProperties.LinkedList PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LinkedList/Program.cs">
     <Files>
       <File FileName="LinkedList/Program.cs" Line="148" Column="57" />
       <File FileName="LinkedList/Node.cs" Line="18" Column="21" />
@@ -11,7 +11,7 @@
         <State name="__root__">
           <Node name="LinkedList" expanded="True">
             <Node name="LinkedList" expanded="True">
-              <Node name="Node.cs" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -21,10 +21,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.LinkedList PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
